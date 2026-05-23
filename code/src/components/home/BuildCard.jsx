@@ -1,5 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import NeonButton from '../common/NeonButton';
+import StatusChip from '../common/StatusChip';
 import { useBuild } from '../../context/BuildContext';
 
 const categoryIcons = {
@@ -32,37 +34,42 @@ export default function BuildCard({ build, glowColor = 'violet' }) {
     navigate('/builder');
   };
 
-  const neonClass = glowColor === 'ice' ? 'neon-ice' : 'neon-violet';
+  const accentColor = glowColor === 'ice'
+    ? 'rgba(0,219,231,0.25)'
+    : glowColor === 'pink'
+      ? 'rgba(255,80,110,0.25)'
+      : 'rgba(208,188,255,0.25)';
 
   return (
     <div
-      className={`relative group bg-surface-container/60 rounded-xl overflow-hidden transition-all duration-500 hover:-translate-y-1 border border-white/[0.06] hover:border-white/[0.12] ${neonClass}`}
+      className="relative group rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1.5 bg-surface-container-low/40 backdrop-blur-md border border-white/[0.06] hover:border-white/[0.12] cyber-card"
+      style={{ boxShadow: `0 0 20px ${accentColor}, 0 4px 20px rgba(0,0,0,0.3)` }}
     >
       {/* 顶部标签 */}
       <div className="absolute top-3 right-3 z-10">
-        <span className={`font-label-sm text-label-sm px-2 py-0.5 rounded uppercase border ${
-          glowColor === 'ice'
-            ? 'bg-secondary-fixed-dim/20 text-secondary-fixed-dim border-secondary-fixed-dim/50'
-            : 'bg-primary/20 text-primary border-primary/50'
-        }`}>
+        <StatusChip
+          variant={glowColor === 'ice' ? 'ice' : glowColor === 'pink' ? 'error' : 'primary'}
+        >
           {build.tier}
-        </span>
+        </StatusChip>
       </div>
 
       {/* 真实主机图片 */}
-      <div className="h-64 overflow-hidden relative bg-surface-container">
+      <div className="h-52 overflow-hidden relative bg-surface-container">
         <img
           src={IMAGE_MAP[glowColor]}
           alt={build.name}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
         />
         {/* 底部渐隐过渡到卡片背景 */}
-        <div className="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-surface-container-low via-surface-container-low/80 to-transparent" />
+        {/* 顶部微光 */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] via-transparent to-transparent pointer-events-none" />
       </div>
 
       {/* 内容区 */}
-      <div className="p-5">
-        <h3 className={`font-headline-md text-headline-md mb-4 ${
+      <div className="p-4 pt-3">
+        <h3 className={`font-headline-md text-headline-md mb-3 font-semibold ${
           glowColor === 'ice'
             ? 'text-secondary-fixed-dim'
             : glowColor === 'pink'
@@ -72,14 +79,14 @@ export default function BuildCard({ build, glowColor = 'violet' }) {
           {build.name}
         </h3>
 
-        {/* 配件列表 - 只显示前3个核心配件 */}
-        <div className="space-y-3 mb-6">
-          {Object.entries(build.parts).slice(0, 3).map(([category, part]) => (
-            <div key={category} className="flex items-center gap-2.5">
-              <span className="material-symbols-outlined text-on-surface-variant/40 text-sm w-4 flex-shrink-0">
+        {/* 配件列表 */}
+        <div className="space-y-1.5 mb-4">
+          {Object.entries(build.parts).map(([category, part]) => (
+            <div key={category} className="flex items-center gap-2.5 group/item">
+              <span className="material-symbols-outlined text-on-surface-variant/30 text-sm w-4 flex-shrink-0 group-hover/item:text-primary/60 transition-colors duration-200">
                 {categoryIcons[category] || 'settings'}
               </span>
-              <span className="font-label-sm text-label-sm text-on-surface-variant/70 truncate">
+              <span className="font-label-sm text-label-sm text-on-surface-variant/60 truncate group-hover/item:text-on-surface-variant/80 transition-colors duration-200">
                 {part.name}
               </span>
             </div>
@@ -87,20 +94,18 @@ export default function BuildCard({ build, glowColor = 'violet' }) {
         </div>
 
         {/* 底部：价格 + 按钮 */}
-        <div className="flex justify-between items-center">
-          <div className="font-headline-md text-headline-md text-secondary-fixed-dim drop-shadow-[0_0_5px_rgba(0,219,231,0.5)] tabular-nums">
-            ¥{build.price.toLocaleString()}
+        <div className="flex justify-between items-center pt-3.5 border-t border-white/[0.05]">
+          <div>
+            <div className="font-headline-md text-headline-md text-secondary-fixed-dim drop-shadow-[0_0_5px_rgba(0,219,231,0.2)] tabular-nums">
+              ¥{build.price.toLocaleString()}
+            </div>
+            <div className="font-label-sm text-label-sm text-on-surface-variant/40 mt-0.5">
+              跑分 {build.score?.toLocaleString() || 'N/A'}
+            </div>
           </div>
-          <button
-            onClick={handleClone}
-            className={`font-bold px-4 py-2 rounded-lg text-sm tracking-wide transition-opacity hover:opacity-80 ${
-              glowColor === 'ice'
-                ? 'bg-secondary-fixed-dim text-on-secondary-fixed'
-                : 'bg-primary text-on-primary'
-            }`}
-          >
-            详情查看
-          </button>
+          <NeonButton variant="primary" size="sm" icon="bolt" onClick={handleClone}>
+            一键跃迁
+          </NeonButton>
         </div>
       </div>
     </div>

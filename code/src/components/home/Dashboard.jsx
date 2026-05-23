@@ -145,7 +145,7 @@ export default function Dashboard() {
 
       {/* 配置卡片网格 */}
       {filteredBuilds.length > 0 ? (
-        <StaggerEnter baseDelay={100} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <StaggerEnter baseDelay={100} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {filteredBuilds.map((build, index) => (
             <BuildCard key={build.name} build={build} glowColor={build.glowColor} />
           ))}

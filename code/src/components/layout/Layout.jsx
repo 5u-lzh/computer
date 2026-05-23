@@ -1,7 +1,6 @@
 import React from 'react';
 import TopBar from './TopBar';
 import Sidebar from './Sidebar';
-import BottomRGBPanel from './BottomRGBPanel';
 import ParticleField from '../common/ParticleField';
 export default function Layout({ children }) {
   return (
@@ -24,13 +23,11 @@ export default function Layout({ children }) {
       <Sidebar />
 
       {/* 主内容区 */}
-      <main className="fixed top-16 left-0 md:left-64 right-0 bottom-20 overflow-y-auto px-margin-mobile md:px-margin-desktop py-lg animate-fade-in">
+      <main className="fixed top-16 left-0 md:left-56 right-0 bottom-0 overflow-y-auto px-margin-mobile md:px-margin-desktop py-lg animate-fade-in">
         <div className="max-w-7xl mx-auto">
           {children}
         </div>
       </main>
-
-      <BottomRGBPanel />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useBuild } from '../../context/BuildContext';
 import hardware from '../../data/hardware.json';
 
@@ -104,41 +104,17 @@ export default function TopBar() {
     }
   };
 
-  const location = useLocation();
-
-  const NAV_LINKS = [
-    { path: '/', label: '推荐配置' },
-    { path: '/community', label: '硬件库' },
-    { path: '/builder', label: '组装实验室' },
-  ];
-
   return (
     <header className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-margin-desktop h-16 bg-surface/60 backdrop-blur-xl border-b border-white/[0.06] shadow-[0_0_20px_rgba(0,0,0,0.4)]">
       <div className="flex items-center gap-3">
         {/* Logo */}
-        <h1 className="font-headline-lg text-headline-lg tracking-tighter text-primary drop-shadow-[0_0_8px_rgba(208,188,255,0.6)] cursor-pointer select-none">
-          NEON_FORGE
-        </h1>
-        {/* Nav Links */}
-        <div className="ml-lg hidden md:flex items-center gap-md">
-          {NAV_LINKS.map((link) => {
-            const isActive = location.pathname === link.path;
-            return (
-              <button
-                key={link.path}
-                onClick={() => navigate(link.path)}
-                className={`
-                  font-label-sm text-label-sm transition-colors duration-300 tracking-wider
-                  ${isActive
-                    ? 'text-primary font-bold border-b-2 border-primary'
-                    : 'text-on-surface-variant font-medium hover:text-secondary-fixed-dim'
-                  }
-                `}
-              >
-                {link.label}
-              </button>
-            );
-          })}
+          <h1 className="font-headline-lg text-headline-lg tracking-tighter text-primary drop-shadow-[0_0_8px_rgba(208,188,255,0.6)]">
+            装机大神
+          </h1>
+        <div className="hidden md:flex items-center gap-2 ml-2">
+          <span className="text-[10px] text-on-surface-variant/60 font-label-sm px-2 py-0.5 rounded border border-white/[0.06] bg-white/[0.02] tracking-wider">
+            v1.0 DEMO
+          </span>
         </div>
       </div>
 
