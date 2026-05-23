@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="zh-Hans"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;family=Geist:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        @keyframes pulse-glow {
+            0%, 100% { filter: drop-shadow(0 0 8px rgba(208, 188, 255, 0.4)); }
+            50% { filter: drop-shadow(0 0 15px rgba(0, 219, 231, 0.8)); }
+        }
+        @keyframes rotate-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+        .scanline-overlay {
+            background: linear-gradient(to bottom, transparent, rgba(208, 188, 255, 0.05) 50%, transparent);
+            background-size: 100% 4px;
+            animation: scanline 8s linear infinite;
+        }
+        .grid-bg {
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .glitch-hover:hover {
+            text-shadow: 2px 0 #ff506e, -2px 0 #00dbe7;
+            animation: glitch 0.2s infinite;
+        }
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+        .gauge-conic {
+            background: conic-gradient(from 180deg, #d0bcff 0deg, #00dbe7 280deg, transparent 280deg);
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed-dim": "#d0bcff",
+                    "on-background": "#e5e2e3",
+                    "on-secondary": "#00363a",
+                    "on-error-container": "#ffdad6",
+                    "surface-dim": "#131314",
+                    "on-tertiary-container": "#5b0018",
+                    "on-tertiary": "#67001d",
+                    "on-secondary-container": "#006a70",
+                    "on-error": "#690005",
+                    "secondary": "#ddfcff",
+                    "error-container": "#93000a",
+                    "primary": "#d0bcff",
+                    "on-primary-fixed": "#23005c",
+                    "surface-container": "#201f20",
+                    "outline": "#958ea0",
+                    "on-tertiary-fixed-variant": "#91002d",
+                    "tertiary-container": "#ff506e",
+                    "tertiary-fixed": "#ffdadb",
+                    "secondary-fixed": "#74f5ff",
+                    "secondary-container": "#00f1fe",
+                    "surface-container-low": "#1c1b1c",
+                    "on-primary-fixed-variant": "#5516be",
+                    "on-primary-container": "#340080",
+                    "on-primary": "#3c0091",
+                    "background": "#131314",
+                    "outline-variant": "#494454",
+                    "on-secondary-fixed-variant": "#004f54",
+                    "secondary-fixed-dim": "#00dbe7",
+                    "error": "#ffb4ab",
+                    "tertiary": "#ffb2b8",
+                    "surface-container-highest": "#353436",
+                    "tertiary-fixed-dim": "#ffb2b8",
+                    "surface-container-high": "#2a2a2b",
+                    "inverse-primary": "#6d3bd7",
+                    "on-secondary-fixed": "#002022",
+                    "surface-variant": "#353436",
+                    "on-surface": "#e5e2e3",
+                    "surface-bright": "#3a393a",
+                    "inverse-on-surface": "#313031",
+                    "surface-container-lowest": "#0e0e0f",
+                    "primary-fixed": "#e9ddff",
+                    "on-surface-variant": "#cbc3d7",
+                    "surface-tint": "#d0bcff",
+                    "surface": "#131314",
+                    "on-tertiary-fixed": "#40000f",
+                    "primary-container": "#a078ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "gutter": "16px",
+                    "md": "24px",
+                    "base": "8px",
+                    "xs": "4px",
+                    "xl": "64px",
+                    "sm": "12px",
+                    "lg": "40px",
+                    "margin-desktop": "32px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Space Mono"],
+                    "headline-xl": ["Space Mono"],
+                    "headline-md": ["Space Mono"],
+                    "headline-lg": ["Space Mono"],
+                    "body-md": ["Geist"],
+                    "label-sm": ["Space Mono"],
+                    "body-lg": ["Geist"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "headline-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen overflow-hidden font-body-md select-none">
+<!-- Atmospheric Background Layers -->
+<div class="fixed inset-0 grid-bg opacity-20 pointer-events-none"></div>
+<div class="fixed inset-0 scanline-overlay pointer-events-none"></div>
+<div class="fixed inset-0 bg-gradient-to-tr from-surface-container-lowest via-transparent to-primary/5 pointer-events-none"></div>
+<!-- Top AppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface/60 backdrop-blur-md border-b border-white/10 shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+<div class="flex items-center gap-base">
+<button class="flex items-center gap-xs text-on-surface-variant hover:text-primary transition-colors group">
+<span class="material-symbols-outlined font-label-sm text-label-sm">arrow_back_ios</span>
+<span class="font-label-sm text-label-sm">返回</span>
+</button>
+<div class="w-px h-6 bg-white/10 mx-md"></div>
+<div class="font-headline-lg text-headline-lg tracking-tighter text-primary drop-shadow-[0_0_8px_rgba(208,188,255,0.8)]">NEON_FORGE</div>
+</div>
+<div class="flex items-center gap-lg">
+<nav class="hidden md:flex items-center gap-xl">
+<a class="text-on-surface-variant font-medium hover:text-secondary-fixed-dim transition-colors duration-300 font-label-sm text-label-sm uppercase tracking-widest" href="#">Build</a>
+<a class="text-primary font-bold border-b-2 border-primary hover:text-secondary-fixed-dim transition-colors duration-300 font-label-sm text-label-sm uppercase tracking-widest" href="#">Benchmarking</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary-fixed-dim transition-colors duration-300 font-label-sm text-label-sm uppercase tracking-widest" href="#">Market</a>
+</nav>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">settings_input_component</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">notifications</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">account_circle</span>
+</div>
+</div>
+</header>
+<!-- Side Navigation Bar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-112px)] z-40 flex flex-col py-md bg-surface-container/40 backdrop-blur-xl border-r border-white/10 shadow-[5px_0_20px_rgba(0,0,0,0.4)] w-64 rounded-r-xl">
+<div class="px-md mb-lg">
+<div class="flex items-center gap-sm mb-base">
+<div class="w-10 h-10 rounded-full border border-primary/50 overflow-hidden">
+<img alt="Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUjj0hpwUrs2NDp69SlLhYvUnzPnqV9DwCpUUz8a7EL7uKngx2ykVEHY36ZN1fNX5Mu_da9IY37ISBytYNV2n-QxSLXtVyUd4swL4IEfGGYEV6NOidpYp7gr8Og-QFZVm5bSVYaPKqA8ZsnC9xjMwamc_EMqzrR2pHjzztoLmZbZyNeROTW_PYuB0CMdcu10FWfDA0Bou55-kLJKYFE9rhUzxd-B65vnM1_zILjpmIWB3VpFLai5-yKzDAIN8G8JVSVYXcffnkrw7G"/>
+</div>
+<div>
+<div class="font-label-sm text-label-sm text-primary">OPERATOR_01</div>
+<div class="text-[10px] text-on-surface-variant font-label-sm">48级 架构师</div>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-base">
+<div class="text-on-surface-variant hover:text-secondary px-4 py-3 flex items-center gap-3 transition-all duration-200 hover:bg-white/5 cursor-pointer">
+<span class="material-symbols-outlined">verified</span>
+<span class="font-label-sm text-label-sm">大神推荐</span>
+</div>
+<div class="text-on-surface-variant hover:text-secondary px-4 py-3 flex items-center gap-3 transition-all duration-200 hover:bg-white/5 cursor-pointer">
+<span class="material-symbols-outlined">memory</span>
+<span class="font-label-sm text-label-sm">我的电脑</span>
+</div>
+<div class="bg-primary/20 text-primary border-r-4 border-primary px-4 py-3 flex items-center gap-3 translate-x-1 cursor-default">
+<span class="material-symbols-outlined">speed</span>
+<span class="font-label-sm text-label-sm">跑分测试</span>
+</div>
+<div class="text-on-surface-variant hover:text-secondary px-4 py-3 flex items-center gap-3 transition-all duration-200 hover:bg-white/5 cursor-pointer">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-label-sm text-label-sm">我的收藏</span>
+</div>
+</nav>
+<div class="px-md mt-auto">
+<button class="w-full py-base bg-primary text-on-primary font-bold rounded-lg shadow-[0_0_15px_rgba(208,188,255,0.4)] hover:scale-105 active:scale-95 transition-all">新建配置</button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 mt-16 p-lg h-[calc(100vh-64px)] overflow-y-auto relative z-10">
+<!-- Background Decoration (GPU Fan Silhouette) -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-[600px] animate-[rotate-slow_20s_linear_infinite]" style="font-variation-settings: 'FILL' 1;">mode_fan</span>
+</div>
+<div class="max-w-7xl mx-auto grid grid-cols-12 gap-lg relative">
+<!-- Left Panel: Test Metrics & Predictions -->
+<div class="col-span-12 lg:col-span-3 space-y-gutter">
+<section class="bg-surface-container-low/60 backdrop-blur-md p-md rounded-xl border border-white/5 shadow-xl">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-headline-md text-headline-md text-primary">游戏预估</h3>
+<span class="text-[10px] text-on-surface-variant tracking-widest px-2 py-1 border border-white/10 rounded">TECH SPEC</span>
+</div>
+<div class="space-y-md">
+<div class="flex flex-col gap-xs">
+<div class="flex justify-between text-label-sm font-label-sm">
+<span>Cyberpunk 2077</span>
+<span class="text-secondary-fixed-dim">120 FPS</span>
+</div>
+<div class="h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary-fixed-dim w-[85%] shadow-[0_0_8px_#00dbe7]"></div>
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<div class="flex justify-between text-label-sm font-label-sm">
+<span>Valorant</span>
+<span class="text-secondary-fixed-dim">450 FPS</span>
+</div>
+<div class="h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[95%] shadow-[0_0_8px_#d0bcff]"></div>
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<div class="flex justify-between text-label-sm font-label-sm">
+<span>Elden Ring</span>
+<span class="text-secondary-fixed-dim">60 FPS</span>
+</div>
+<div class="h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary-fixed-dim w-[60%]"></div>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-surface-container-low/60 backdrop-blur-md p-md rounded-xl border border-white/5 shadow-xl">
+<h3 class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-md">系统健康状态</h3>
+<div class="grid grid-cols-2 gap-base">
+<div class="p-base bg-black/20 border border-white/5 rounded">
+<div class="text-[10px] text-on-surface-variant">CPU TEMP</div>
+<div class="text-headline-md font-headline-md text-secondary-fixed-dim">42°C</div>
+</div>
+<div class="p-base bg-black/20 border border-white/5 rounded">
+<div class="text-[10px] text-on-surface-variant">GPU TEMP</div>
+<div class="text-headline-md font-headline-md text-primary">58°C</div>
+</div>
+<div class="p-base bg-black/20 border border-white/5 rounded">
+<div class="text-[10px] text-on-surface-variant">WATTAGE</div>
+<div class="text-headline-md font-headline-md text-on-surface">650W</div>
+</div>
+<div class="p-base bg-black/20 border border-white/5 rounded">
+<div class="text-[10px] text-on-surface-variant">LOAD</div>
+<div class="text-headline-md font-headline-md text-on-surface">12%</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Center: The Dashboard -->
+<div class="col-span-12 lg:col-span-6 flex flex-col items-center justify-center py-lg relative">
+<!-- Circular Dashboard -->
+<div class="relative w-[400px] h-[400px] flex items-center justify-center">
+<!-- Outer Decorative Rings -->
+<div class="absolute inset-0 rounded-full border-4 border-dashed border-white/5 animate-[rotate-slow_60s_linear_infinite]"></div>
+<div class="absolute inset-4 rounded-full border border-secondary/20"></div>
+<!-- Main Gauge -->
+<div class="absolute inset-10 rounded-full gauge-conic opacity-20 blur-xl animate-pulse"></div>
+<div class="absolute inset-10 rounded-full border-[10px] border-surface-container-highest"></div>
+<svg class="absolute inset-10 w-[320px] h-[320px] -rotate-90">
+<circle class="transition-all duration-1000 ease-out" cx="160" cy="160" fill="none" r="150" stroke="#00dbe7" stroke-dasharray="942" stroke-dashoffset="180" stroke-width="10" style="filter: drop-shadow(0 0 8px #00dbe7)"></circle>
+</svg>
+<!-- Score Center -->
+<div class="z-20 text-center">
+<div class="font-label-sm text-label-sm text-secondary-fixed-dim tracking-[0.3em] uppercase mb-base">Performance Score</div>
+<div class="font-headline-xl text-headline-xl text-on-background drop-shadow-[0_0_20px_rgba(229,226,227,0.5)]" id="benchmark-score">859,420</div>
+<div class="flex items-center justify-center gap-xs mt-base text-primary">
+<span class="material-symbols-outlined text-sm">bolt</span>
+<span class="font-label-sm text-label-sm">ELITE TIER</span>
+</div>
+</div>
+<!-- Glowing Particle Core -->
+<div class="absolute w-2 h-2 bg-white rounded-full blur-[2px] animate-ping opacity-50"></div>
+</div>
+<!-- Primary Action Button -->
+<div class="mt-lg">
+<button class="group relative px-12 py-4 bg-primary text-on-primary font-bold text-headline-md font-headline-md rounded-lg overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(208,188,255,0.6)]" onclick="startBenchmark()">
+<span class="relative z-10">开始测试</span>
+<div class="absolute inset-0 bg-gradient-to-r from-secondary-fixed-dim to-primary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<!-- Glitch line decoration -->
+<div class="absolute top-0 left-0 w-full h-[2px] bg-white opacity-50"></div>
+</button>
+<p class="text-center text-on-surface-variant font-label-sm text-label-sm mt-md opacity-60">
+                        ESTIMATED TIME: 03:45 MIN
+                    </p>
+</div>
+</div>
+<!-- Right Panel: Components & Details -->
+<div class="col-span-12 lg:col-span-3 space-y-gutter">
+<section class="bg-surface-container-low/60 backdrop-blur-md p-md rounded-xl border border-white/5 shadow-xl">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-headline-md text-headline-md text-secondary-fixed-dim">得分详情</h3>
+</div>
+<div class="space-y-base">
+<div class="flex justify-between p-base border-b border-white/5">
+<span class="text-on-surface-variant font-label-sm">GPU Render</span>
+<span class="font-headline-md text-headline-md">412k</span>
+</div>
+<div class="flex justify-between p-base border-b border-white/5">
+<span class="text-on-surface-variant font-label-sm">CPU Multi</span>
+<span class="font-headline-md text-headline-md">288k</span>
+</div>
+<div class="flex justify-between p-base border-b border-white/5">
+<span class="text-on-surface-variant font-label-sm">Memory R/W</span>
+<span class="font-headline-md text-headline-md">159k</span>
+</div>
+</div>
+</section>
+<div class="rounded-xl overflow-hidden border border-white/10 group cursor-crosshair">
+<img class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Close up photography of a high-end futuristic PC build with glowing RGB liquid cooling pipes and illuminated fans. The scene is dominated by vibrant electric violet and glacier blue lighting, creating a high-contrast cyber-tech aesthetic. The background is dark and moody, emphasizing the neon emission of the hardware components." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmBNzYZQ6tuAKOdzkAgR3iqwW9xg42cwwP660T64PvzhlhFf4xN8F026U35NnyP13YQyEdJ4arZmd1Ify9ldzHqN50j5Y3pUlxcxUWdZC0HCWXNHwnBfvAaHzsi-wpl4YvM8H_bbwANPeHY_jOZOwMSPLn5XRPPOr112Niu6gjzI6Ix5C2xKhTZ1fciG7XSkm4L4zHBO71Bn6Cr0MvX5gYRnx8kq9n4w4tfEsJSQuD9ByOzD1iVghohSUL8Rr5r7ueBhiJ7mzO_U0h"/>
+<div class="p-md bg-surface-container-highest/80 backdrop-blur-sm">
+<div class="text-[10px] text-primary tracking-widest font-label-sm mb-xs">DETECTED HARDWARE</div>
+<div class="text-body-md font-bold">RTX 5090 SUPER INTERFACE</div>
+</div>
+</div>
+<!-- HUD Gauges -->
+<div class="bg-surface-container-low/60 backdrop-blur-md p-md rounded-xl border border-white/5 shadow-xl">
+<div class="flex flex-col gap-md">
+<div>
+<div class="flex justify-between mb-xs">
+<span class="text-[10px] text-on-surface-variant font-label-sm">THERMAL HEADROOM</span>
+<span class="text-[10px] text-secondary font-label-sm">62% SAFE</span>
+</div>
+<div class="h-2 bg-black/40 rounded-full p-[2px]">
+<div class="h-full bg-secondary-fixed-dim rounded-full shadow-[0_0_10px_#00dbe7] animate-pulse" style="width: 62%;"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-xs">
+<span class="text-[10px] text-on-surface-variant font-label-sm">STABILITY RATING</span>
+<span class="text-[10px] text-primary font-label-sm">99.8%</span>
+</div>
+<div class="h-2 bg-black/40 rounded-full p-[2px]">
+<div class="h-full bg-primary rounded-full shadow-[0_0_10px_#d0bcff]" style="width: 99.8%;"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Mobile Only) -->
+<footer class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-xl py-base h-20 bg-surface-container-lowest/80 backdrop-blur-2xl border-t border-secondary/30 shadow-[0_-4px_20px_rgba(0,219,231,0.2)] rounded-t-full">
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-secondary transition-transform duration-200">
+<span class="material-symbols-outlined">palette</span>
+<span class="font-label-sm text-label-sm">Static</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-secondary/10 text-secondary-fixed-dim rounded-xl p-2 shadow-[0_0_10px_rgba(0,219,231,0.4)] scale-110">
+<span class="material-symbols-outlined">speed</span>
+<span class="font-label-sm text-label-sm">Pulse</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-secondary transition-transform duration-200">
+<span class="material-symbols-outlined">flash_on</span>
+<span class="font-label-sm text-label-sm">Strobe</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-secondary transition-transform duration-200">
+<span class="material-symbols-outlined">sync</span>
+<span class="font-label-sm text-label-sm">Cycle</span>
+</div>
+</footer>
+<script>
+        function startBenchmark() {
+            const scoreElement = document.getElementById('benchmark-score');
+            let currentScore = 0;
+            const targetScore = 859420;
+            const duration = 2000; // 2 seconds
+            const startTime = performance.now();
+
+            function updateScore(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Easing function for a nice smooth count up
+                const easeOutQuad = t => t * (2 - t);
+                const score = Math.floor(easeOutQuad(progress) * targetScore);
+                
+                scoreElement.textContent = score.toLocaleString();
+
+                if (progress < 1) {
+                    requestAnimationFrame(updateScore);
+                } else {
+                    scoreElement.classList.add('animate-bounce');
+                    setTimeout(() => scoreElement.classList.remove('animate-bounce'), 1000);
+                }
+            }
+
+            requestAnimationFrame(updateScore);
+            
+            // Add extra pulse effect to the gauge during test
+            const gauge = document.querySelector('circle');
+            gauge.style.strokeDashoffset = "0";
+            gauge.style.transition = "stroke-dashoffset 2s cubic-bezier(0.4, 0, 0.2, 1)";
+        }
+
+        // Initialize micro-interactions
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                const audio = new Audio('https://www.soundjay.com/buttons/sounds/button-20.mp3');
+                audio.volume = 0.1;
+                // audio.play().catch(() => {}); // Commented out to avoid auto-play blocking
+            });
+        });
+    </script>
+</body></html>

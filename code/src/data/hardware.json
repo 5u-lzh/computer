@@ -1,0 +1,278 @@
+{
+  "cpu": [
+    {
+      "id": "cpu-1",
+      "name": "Intel Core i9-14900KS",
+      "spec": "24核32线程 / 6.2GHz",
+      "power": 253,
+      "price": 4999,
+      "pf": 95,
+      "desc": "终极性能猛兽，游戏博主最爱，能跑的帧率比你的心跳还快。",
+      "socket": "LGA1700",
+      "image": "cpu"
+    },
+    {
+      "id": "cpu-2",
+      "name": "AMD Ryzen 9 7950X3D",
+      "spec": "16核32线程 / 5.7GHz",
+      "power": 220,
+      "price": 4299,
+      "pf": 92,
+      "desc": "3D V-Cache 技术加持，游戏缓存大到溢出，吃鸡加载比队友快10秒。",
+      "socket": "AM5",
+      "image": "cpu"
+    },
+    {
+      "id": "cpu-3",
+      "name": "Intel Core i7-14700K",
+      "spec": "20核28线程 / 5.6GHz",
+      "power": 180,
+      "price": 2999,
+      "pf": 82,
+      "desc": "全能性能怪兽，直播/剪辑/游戏通杀，性价比之王。",
+      "socket": "LGA1700",
+      "image": "cpu"
+    },
+    {
+      "id": "cpu-4",
+      "name": "AMD Ryzen 7 7800X3D",
+      "spec": "8核16线程 / 5.0GHz",
+      "power": 120,
+      "price": 3299,
+      "pf": 85,
+      "desc": "游戏特化U，纯玩游戏比i9还猛，功耗却只有一半。",
+      "socket": "AM5",
+      "image": "cpu"
+    }
+  ],
+  "gpu": [
+    {
+      "id": "gpu-1",
+      "name": "NVIDIA RTX 5090 D",
+      "spec": "24576 CUDA / 32GB GDDR7",
+      "power": 450,
+      "price": 16999,
+      "pf": 100,
+      "desc": "卡皇降临！4K光追全开稳120帧，你的电竞梦想照进现实。",
+      "image": "gpu"
+    },
+    {
+      "id": "gpu-2",
+      "name": "NVIDIA RTX 4090 OC",
+      "spec": "16384 CUDA / 24GB GDDR6X",
+      "power": 350,
+      "price": 12999,
+      "pf": 95,
+      "desc": "上一代旗舰依然能打，《赛博朋克2077》路径追踪随便跑。",
+      "image": "gpu"
+    },
+    {
+      "id": "gpu-3",
+      "name": "AMD Radeon RX 7900 XTX",
+      "spec": "6144 Stream / 24GB GDDR6",
+      "power": 320,
+      "price": 7999,
+      "pf": 88,
+      "desc": "A卡王者，白色信仰，纯白主题装机的不二之选。",
+      "image": "gpu"
+    },
+    {
+      "id": "gpu-4",
+      "name": "NVIDIA RTX 4070 Ti Super",
+      "spec": "8448 CUDA / 16GB GDDR6X",
+      "power": 220,
+      "price": 5499,
+      "pf": 78,
+      "desc": "2K分辨率通杀，光追性能越级打怪，甜品中的战斗机。",
+      "image": "gpu"
+    }
+  ],
+  "memory": [
+    {
+      "id": "mem-1",
+      "name": "芝奇幻锋戟 DDR5-8000",
+      "spec": "64GB (2×32GB) 8000MT/s",
+      "power": 15,
+      "price": 2999,
+      "pf": 90,
+      "desc": "RGB呼吸灯条，自带科技圣光，速度快到起飞。",
+      "image": "memory"
+    },
+    {
+      "id": "mem-2",
+      "name": "海盗船 Dominator DDR5-7200",
+      "spec": "32GB (2×16GB) 7200MT/s",
+      "power": 12,
+      "price": 1599,
+      "pf": 78,
+      "desc": "工业美学巅峰，CAPELLIX LED灯效丝滑到令人发指。",
+      "image": "memory"
+    },
+    {
+      "id": "mem-3",
+      "name": "金士顿 FURY Beast DDR5-6000",
+      "spec": "32GB (2×16GB) 6000MT/s",
+      "power": 10,
+      "price": 899,
+      "pf": 70,
+      "desc": "性价比战神，稳定兼容，选它永远不会翻车。",
+      "image": "memory"
+    }
+  ],
+  "motherboard": [
+    {
+      "id": "mb-1",
+      "name": "华硕 ROG MAXIMUS Z790 HERO",
+      "spec": "ATX / LGA1700 / DDR5",
+      "power": 40,
+      "price": 4999,
+      "pf": 90,
+      "desc": "旗舰级堆料王，全盔甲覆盖，装上去就感觉整个机箱贵了5000。",
+      "socket": "LGA1700",
+      "image": "motherboard"
+    },
+    {
+      "id": "mb-2",
+      "name": "技嘉 X670E AORUS MASTER",
+      "spec": "ATX / AM5 / DDR5",
+      "power": 35,
+      "price": 3999,
+      "pf": 88,
+      "desc": "A板天花板，PCIe 5.0全速通道，战未来必备。",
+      "socket": "AM5",
+      "image": "motherboard"
+    },
+    {
+      "id": "mb-3",
+      "name": "微星 MAG B760M MORTAR",
+      "spec": "M-ATX / LGA1700 / DDR5",
+      "power": 25,
+      "price": 1499,
+      "pf": 72,
+      "desc": "迫击炮经典传承，该有的都有，中端装机的定海神针。",
+      "socket": "LGA1700",
+      "image": "motherboard"
+    }
+  ],
+  "storage": [
+    {
+      "id": "st-1",
+      "name": "三星 990 Pro 2TB",
+      "spec": "2TB / NVMe PCIe 4.0 / 读7450MB/s",
+      "power": 8,
+      "price": 1899,
+      "pf": 90,
+      "desc": "地表最快消费级SSD，游戏加载快到地图还没显示完你就进去了。",
+      "image": "storage"
+    },
+    {
+      "id": "st-2",
+      "name": "西数 SN850X 1TB",
+      "spec": "1TB / NVMe PCIe 4.0 / 读7300MB/s",
+      "power": 7,
+      "price": 999,
+      "pf": 82,
+      "desc": "游戏加载闪电般飞速，和加载界面说拜拜。",
+      "image": "storage"
+    },
+    {
+      "id": "st-3",
+      "name": "致态 TiPro7000 1TB",
+      "spec": "1TB / NVMe PCIe 4.0 / 读7400MB/s",
+      "power": 7,
+      "price": 699,
+      "pf": 78,
+      "desc": "国产之光，性能炸裂，支持国货从我做起。",
+      "image": "storage"
+    }
+  ],
+  "psu": [
+    {
+      "id": "psu-1",
+      "name": "海韵 PRIME TX-1600",
+      "spec": "1600W / 80+ 钛金牌 / 全模组",
+      "power": 0,
+      "price": 4999,
+      "pf": 95,
+      "desc": "电源中的劳斯莱斯，1600W带任何显卡都稳如泰山。",
+      "image": "psu"
+    },
+    {
+      "id": "psu-2",
+      "name": "华硕 ROG THOR 1200P2",
+      "spec": "1200W / 80+ 白金牌 / 全模组",
+      "power": 0,
+      "price": 2999,
+      "pf": 90,
+      "desc": "OLED功耗实时显示，帅气侧透，败家之眼加持。",
+      "image": "psu"
+    },
+    {
+      "id": "psu-3",
+      "name": "长城 GX 850W",
+      "spec": "850W / 80+ 金牌 / 全模组",
+      "power": 0,
+      "price": 799,
+      "pf": 75,
+      "desc": "国产良心，850W主流配置稳稳的，预算党的福音。",
+      "image": "psu"
+    }
+  ],
+  "cooler": [
+    {
+      "id": "cl-1",
+      "name": "NZXT Kraken X73 RGB",
+      "spec": "360mm 水冷 / 3×120mm RGB风扇",
+      "power": 25,
+      "price": 1999,
+      "pf": 90,
+      "coolingTdp": 360,
+      "desc": "水冷水泵带2.4寸LCD屏，可以放GIF动图，散热性能炸裂。",
+      "image": "cooler"
+    },
+    {
+      "id": "cl-2",
+      "name": "微星 MAG CoreLiquid M360",
+      "spec": "360mm 水冷 / 3×120mm ARGB",
+      "power": 22,
+      "price": 1299,
+      "pf": 85,
+      "coolingTdp": 320,
+      "desc": "冷头内置6cm风扇辅助散热，双腔体设计，散热效率拉满。",
+      "image": "cooler"
+    },
+    {
+      "id": "cl-3",
+      "name": "利民 Peerless Assassin 120",
+      "spec": "双塔风冷 / 2×120mm",
+      "power": 5,
+      "price": 299,
+      "pf": 70,
+      "coolingTdp": 220,
+      "desc": "百元风冷屠龙勇士，压i7默频完全没问题，性价比无敌。",
+      "image": "cooler"
+    }
+  ],
+  "case": [
+    {
+      "id": "case-1",
+      "name": "联力 O11 Dynamic EVO",
+      "spec": "双面全透海景房 / E-ATX",
+      "power": 0,
+      "price": 1499,
+      "pf": 90,
+      "desc": "网红爆款海景房，双面钢化玻璃，RGB灯效投射绝了。",
+      "image": "case"
+    },
+    {
+      "id": "case-2",
+      "name": "NZXT H7 Flow",
+      "spec": "中塔ATX / 钢化玻璃侧透",
+      "power": 0,
+      "price": 999,
+      "pf": 82,
+      "desc": "极简北欧风设计，散热气流极佳，低调奢华有内涵。",
+      "image": "case"
+    }
+  ]
+}

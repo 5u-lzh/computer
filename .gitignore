@@ -1,0 +1,33 @@
+# Dependencies
+code/node_modules/
+code/.pnp
+code/.pnp.js
+
+# Build output
+code/dist/
+code/build/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Claude
+.claude/
+
+# Cache
+.eslintcache
